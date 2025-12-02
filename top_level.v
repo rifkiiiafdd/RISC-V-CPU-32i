@@ -145,6 +145,7 @@ module toplevel_rv32i(
 
       // in1 alu
       mux2_to_1 blok_alu1src(
+        // if s = 0, A
         .A(rs1),
         .B(PC),
         .selector(cu_ALU1src),

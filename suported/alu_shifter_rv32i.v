@@ -1,7 +1,7 @@
 module alu_shifter_rv32i(
     input wire [31:0] in,
     input wire [31:0] shamt,
-    input wire [2:0] type,
+    input wire [1:0] type,
     output wire [31:0] out
 );
 
@@ -19,9 +19,9 @@ module alu_shifter_rv32i(
     assign sra_result = $signed(in) >>> shamt;
 
     // Multiplexer to select the output based on type
-    assign out = (type == 3'b000) ? sll_result :
-                 (type == 3'b001) ? srl_result :
-                 (type == 3'b010) ? sra_result :
+    assign out = (type == 2'b00) ? sll_result :
+                 (type == 2'b01) ? srl_result :
+                 (type == 2'b10) ? sra_result :
                  32'b0; // Default case
 
 
