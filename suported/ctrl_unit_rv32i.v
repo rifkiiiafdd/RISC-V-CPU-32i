@@ -90,7 +90,7 @@ module ctrl_unit_rv32i (
                         if (funct7 == 7'h00)  
                             cu_shiftype = 2'b01; // SRL 
                         else  
-                            cu_shiftype = 2'b11; // SRA 
+                            cu_shiftype = 2'b10; // SRA 
                     end 
                     3'h6: // OR 
                     begin 
@@ -134,7 +134,7 @@ module ctrl_unit_rv32i (
                         if (funct7 == 7'h00)  
                             cu_shiftype = 2'b01; // Srli
                         else  
-                            cu_shiftype = 2'b11; // Srai
+                            cu_shiftype = 2'b10; // Srai
                     end 
                     3'h6: // ORI 
                     begin   

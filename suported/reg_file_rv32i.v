@@ -33,8 +33,7 @@ module reg_file_rv32i (
   end 
  
   // Baca asinkron 
-  always @ (posedge clock) begin 
     assign rs1 = (rs1_addr == 5'd0) ? 32'b0 : rf[rs1_addr]; 
     assign rs2 = (rs2_addr == 5'd0) ? 32'b0 : rf[rs2_addr]; 
-  end 
+    
 endmodule

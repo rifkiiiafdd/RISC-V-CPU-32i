@@ -20,7 +20,7 @@ module instr_rom_rv32i (
   altsyncram #( 
     .operation_mode("ROM"), 
     .width_a(32), 
-    .widthad_a(5),                  // 32 word 
+    .widthad_a(6),                  // 32 word 
     .init_file("imemory_rv32i.mif"), 
     .outdata_reg_a("UNREGISTERED") 
   ) rom ( 

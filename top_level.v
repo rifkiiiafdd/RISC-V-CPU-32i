@@ -192,8 +192,7 @@ module toplevel_rv32i(
          .rs2(rs2),
          .cu_store(cu_store),
          .cu_storetype(cu_storetype),
-         .cu_loadtype(cu_loadtype),
-   
+         
          .dmem_out(dmem_out)
          );
 
