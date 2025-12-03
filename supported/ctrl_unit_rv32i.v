@@ -21,7 +21,7 @@ module ctrl_unit_rv32i (
     output reg [1:0] cu_ALUtype,    // ADD/SUB = 2'b00, GATE = 2'b01, 
                                     // SHIFT = 2'b10  , SLT = 2'b11 
     output reg       cu_adtype,     // ADD = 1’b0, SUB = 1’b1 
-    output reg [1:0] cu_gatype,     // AND = 2'b00, OR = 2'b01, XOR = 2'b10 
+    output reg [1:0] cu_gatype,     // AND = 2'b10, OR = 2'b01, XOR = 2'b00
     output reg [1:0] cu_shiftype,   // SLL = 2'b00, SRL = 2'b01, SRA = 2'b11 
     output reg       cu_sltype,     // Signed = 1'b0, Unsigned = 1'b1 
     output reg [1:0] cu_rdtype,     // From ALU = 2'b00 , from memory = 2'b01, 

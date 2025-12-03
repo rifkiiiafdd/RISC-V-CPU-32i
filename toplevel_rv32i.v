@@ -29,7 +29,7 @@ module toplevel_rv32i(
     mux2_to_1 blok_21mux_jumper(
     .A(PC_4_add),
     .B(PC_jump),
-    .selector(cu_PCtype),
+    .s(cu_PCtype),
     .Y(PC_new)
  );
 
@@ -100,7 +100,7 @@ module toplevel_rv32i(
     wire [1:0] cu_ALUtype;    // ADD/SUB = 2'b00, GATE = 2'b01, 
                                     // SHIFT = 2'b10  , SLT = 2'b11 
     wire       cu_adtype;     // ADD = 1’b0, SUB = 1’b1 
-    wire [1:0] cu_gatype;     // AND = 2'b00, OR = 2'b01, XOR = 2'b10 
+    wire [1:0] cu_gatype;     // AND = 2'b10, OR = 2'b01, XOR = 2'b00 
     wire [1:0] cu_shiftype;   // SLL = 2'b00, SRL = 2'b01, SRA = 2'b11 
     wire       cu_sltype;     // Signed = 1'b0, Unsigned = 1'b1 
     wire [1:0] cu_rdtype;     // From ALU = 2'b00 , from memory = 2'b01, 
@@ -148,7 +148,7 @@ module toplevel_rv32i(
         // if s = 0, A
         .A(rs1),
         .B(PC),
-        .selector(cu_ALU1src),
+        .s(cu_ALU1src),
         .Y(ALU_in1)
       );
 
@@ -156,7 +156,7 @@ module toplevel_rv32i(
       mux2_to_1 blok_alu2src(
         .A(rs2),
         .B(imm),
-        .selector(cu_ALU2src),
+        .s(cu_ALU2src),
         .Y(ALU_in2)
       );
 
