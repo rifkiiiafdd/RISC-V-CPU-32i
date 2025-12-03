@@ -11,7 +11,7 @@ module toplevel_rv32i(
     input wire clock,
     input wire reset,
     // Sinyal-sinyal intermediat terekspos
-    output wire [31:0] PC, PC_in, instr,
+    output wire [31:0] PC, PCin, instr,
     output wire [6:0] opcode, funct7,
     output wire [2:0] funct3,
     output wire [4:0] rs1_addr, rs2_addr, rd_addr,
@@ -44,28 +44,28 @@ module toplevel_rv32i(
     .in2(rs2),
     .cu_branch(cu_branch),
     .cu_branchtype(cu_branchtype),
-    .PCin(PC_in)
+    .PCin(PCin)
     );
 
-    wire [31:0] PC_out;
+    wire [31:0] PCout;
     pc_rv32i blok_pc(
     .clk(clock),
     .rst(reset),
-    .PC_in(PC_in),
+    .PCin(PCin),
 
-    .PC_out(PC_out)
+    .PCout(PCout)
     );
 
-    assign PC = PC_out;
+    assign PC = PCout;
 
     pc_4_adder_rv32i blok_4adder(
-    .PCold(PC_out),
+    .PCold(PCout),
     .PC_4_inc(PC_4_add)
     );
 
     instr_rom_rv32i blok_imem(
     .clock(clock),
-    .PC(PC_out),
+    .PC(PCout),
     .INSTR(instr)
     );
 
