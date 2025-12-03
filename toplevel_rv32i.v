@@ -23,6 +23,8 @@ module toplevel_rv32i(
 
     // Sesuaikan dengan nama modul 2-to-1 multiplexer generik Anda
    assign PC_jump = ALU_output; // ALU output memberikan alamat jump
+   
+   assign dmem_addr = ALU_output;
    // jika s=0, A
     mux2_to_1 blok_21mux_jumper(
     .A(PC_4_add),
@@ -32,19 +34,17 @@ module toplevel_rv32i(
  );
 
     wire [31:0] PC_branch, rs1, rs2;
-    wire cu_branch;
 
     assign PC_branch = ALU_output; // ALU output memberikan alamat branch
 
-    wire [2:0] cu_branchtype;
     brancher_rv32i blok_brancher(
-    .PC_new(PC_new),
+    .PCnew(PC_new),
     .PC_branch(PC_branch),
     .in1(rs1),
     .in2(rs2),
     .cu_branch(cu_branch),
     .cu_branchtype(cu_branchtype),
-    .PC_in(PC_in)
+    .PCin(PC_in)
     );
 
     wire [31:0] PC_out;
@@ -192,7 +192,7 @@ module toplevel_rv32i(
          .rs2(rs2),
          .cu_store(cu_store),
          .cu_storetype(cu_storetype),
-         
+
          .dmem_out(dmem_out)
          );
 
