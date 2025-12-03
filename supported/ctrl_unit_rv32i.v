@@ -98,8 +98,10 @@ module ctrl_unit_rv32i (
                         cu_gatype = 2'b01; 
                     end 
                     3'h7: // AND 
+                    begin
                         cu_ALUtype = 2'b01; // Gate operation 
                         cu_gatype = 2'b10; 
+                    end
                 endcase 
             end 
              
@@ -126,7 +128,7 @@ module ctrl_unit_rv32i (
                     3'h4: // XORI 
                     begin 
                         cu_ALUtype = 2'b01; // Gate operation 
-                        cu_gatype = 2'b10; 
+                        cu_gatype = 2'b00; 
                     end 
                     3'h5: // Shift
                     begin 
@@ -144,6 +146,7 @@ module ctrl_unit_rv32i (
                     3'h7: // ANDI 
                     begin
                         cu_ALUtype = 2'b01; // Gate operation
+                        cu_gatype = 2'b10; 
                     end 
                 endcase 
             end 
@@ -236,7 +239,7 @@ module ctrl_unit_rv32i (
                         cu_immtype   = 3'b010; // B-type immediate
                         cu_branch    = 1'b1;   // Enable branching
                         cu_PCtype    = 1'b0;   // PC = ALU
-                        cu_branchtype= 3'b101; // BGEU  
+                        cu_branchtype= 3'b101; // BNE 
                     end 
                     3'h4: // BLT 
                     begin 
@@ -245,7 +248,7 @@ module ctrl_unit_rv32i (
                         cu_immtype   = 3'b010; // B-type immediate
                         cu_branch    = 1'b1;   // Enable branching
                         cu_PCtype    = 1'b0;   // PC = ALU
-                        cu_branchtype= 3'b011; // BGEU 
+                        cu_branchtype= 3'b011; // BLT
                     end 
                     3'h5: // BGE 
                     begin 
@@ -254,7 +257,7 @@ module ctrl_unit_rv32i (
                         cu_immtype   = 3'b010; // B-type immediate
                         cu_branch    = 1'b1;   // Enable branching
                         cu_PCtype    = 1'b0;   // PC = ALU
-                        cu_branchtype= 3'b001; // BGEU 
+                        cu_branchtype= 3'b001; // BGE
                     end 
                     3'h6: // BLTU 
                     begin 
@@ -264,7 +267,7 @@ module ctrl_unit_rv32i (
                         cu_immtype   = 3'b010; // B-type immediate
                         cu_branch    = 1'b1;   // Enable branching
                         cu_PCtype    = 1'b0;   // PC = ALU
-                        cu_branchtype= 3'b100; // BGEU 
+                        cu_branchtype= 3'b100; // BLTU
                     end 
                     3'h7: // BGEU 
                     begin 
@@ -281,7 +284,7 @@ module ctrl_unit_rv32i (
             7'h37: // LUI 
             begin 
                 cu_ALU2src = 1'b1;
-                cu_ALU1src = 1'b1;
+                cu_ALU1src = 1'b0;
                 cu_immtype = 3'b011; // U-type immediate
                 cu_rdwrite = 1'b1;
                 cu_rdtype  = 2'b11;  // from immediate

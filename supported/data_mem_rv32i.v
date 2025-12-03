@@ -6,8 +6,6 @@
 // Nama File    : data_mem_rv32i.v 
 // Deskripsi    : Data Memory 256 x 32-bit (RV32I) via ALTSYNCRAM 
  
-`timescale 1ns/1ps 
-
 module data_mem_rv32i ( 
     input  wire        clock, 
     input  wire        cu_store,        // WE dari CU 
@@ -17,7 +15,6 @@ module data_mem_rv32i (
     output wire [31:0] dmem_out         // data baca (async) 
 ); 
   wire [7:0] waddr = dmem_addr[9:2]; 
-  wire       inv_clock = ~clock;         // inversi clock 
  
   reg  [3:0] be; 
   always @* begin 
@@ -46,12 +43,11 @@ module data_mem_rv32i (
       2'b01: wr_data_aligned = (dmem_addr[1]) ? {rs2[15:0],16'b0} 
                                               : {16'b0,rs2[15:0]};// SH 
       2'b10: wr_data_aligned = rs2;                               // SW 
-          
+            
       default: wr_data_aligned = 32'b0; 
-    endcase
+    endcase 
+  end 
 
-
-    end 
 altsyncram #( 
 .operation_mode   
 ("SINGLE_PORT"), 
@@ -61,7 +57,7 @@ altsyncram #(
 .init_file        ("dmemory.mif"), 
 .width_byteena_a  (4) 
 ) ram ( 
-.clock0    (inv_clock), 
+.clock0    (clock), 
 .wren_a    (cu_store), 
 .address_a (waddr), 
 .data_a    (wr_data_aligned),        

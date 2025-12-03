@@ -55,15 +55,15 @@
         begin 
             case (cu_ALUtype) 
                 2'b00: 
-                    out <= adder_out; 
+                    out = adder_out; 
                 2'b01: 
-                    out <= gate_out;
+                    out = gate_out;
                 2'b10:
-                    out <= shifter_out;
+                    out = shifter_out;
                 2'b11:
-                    out <= slt_out;
+                    out = slt_out;
                 default: 
-                    out <= 32'd0; 
+                    out = 32'd0; 
             endcase 
         end 
     

@@ -24,19 +24,19 @@ module brancher_rv32i(
         begin 
             case (cu_branchtype) 
                 3'b000:  // BEQ 
-                    PCin <= (in1 == in2) ? PC_branch : PCnew; 
+                    PCin = (in1 == in2) ? PC_branch : PCnew; 
                 3'b001:  // BGE 
-                     PCin <= (in1 >= in2) ? PC_branch : PCnew; 
+                     PCin = (in1 >= in2) ? PC_branch : PCnew; 
                 3'b010:  // BGEU 
-                    PCin <= ($unsigned(in1) >= $unsigned(in2)) ? PC_branch : PCnew; 
+                    PCin = ($unsigned(in1) >= $unsigned(in2)) ? PC_branch : PCnew; 
                 3'b011:  // BLT 
-                     PCin <= (in1 < in2) ? PC_branch : PCnew; 
+                     PCin = (in1 < in2) ? PC_branch : PCnew; 
                 3'b100:  // BLTU 
-                    PCin <= ($unsigned(in1) < $unsigned(in2)) ? PC_branch : PCnew;
+                    PCin = ($unsigned(in1) < $unsigned(in2)) ? PC_branch : PCnew;
                 3'b101:  // BNE 
-                    PCin <= (in1 != in2) ? PC_branch : PCnew;
+                    PCin = (in1 != in2) ? PC_branch : PCnew;
                 default: 
-                    PCin <= PCnew; 
+                    PCin = PCnew; 
             endcase
         end 
     else 
