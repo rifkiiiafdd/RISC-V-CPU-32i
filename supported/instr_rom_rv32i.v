@@ -13,7 +13,7 @@ module instr_rom_rv32i (
     output wire [31:0] INSTR 
 ); 
   // Word index untuk 32 word 
-  wire [4:0] waddr = PC[6:2]; 
+  wire [5:0] waddr = PC[7:2]; 
  
   wire       inv_clock = ~clock; 
  

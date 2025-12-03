@@ -1,4 +1,4 @@
-module adder (
+module alu_adder_rv32i (
     input  wire [31:0] in1,      // First operand
     input  wire [31:0] in2,      // Second operand
     input wire type,
